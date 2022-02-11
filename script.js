@@ -29,9 +29,21 @@ pizzaJson.map((item, index)=>{
     elemento('.pizzaWindowArea').style.display = 'flex';
     setTimeout(()=>{
       elemento('.pizzaWindowArea').style.opacity = 1;
-    }, 200)
+    }, 200);
     
   });
 
   elemento('.pizza-area').append(pizzaItem);
+});
+
+//eventos do modal
+function closeModal(){
+  elemento('.pizzaWindowArea').style.opacity = 0;
+  setTimeout(()=>{
+    elemento('.pizzaWindowArea').style.display = 'none';
+  }, 200);
+}
+
+elementosTotais('.pizzaInfo--cancelButton, .pizzaInfo--cancelMobileButton').forEach((item)=>{
+  item.addEventListener('click', closeModal);
 });
