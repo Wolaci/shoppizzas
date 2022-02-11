@@ -47,3 +47,21 @@ function closeModal(){
 elementosTotais('.pizzaInfo--cancelButton, .pizzaInfo--cancelMobileButton').forEach((item)=>{
   item.addEventListener('click', closeModal);
 });
+
+elemento('.pizzaInfo--qtmenos').addEventListener('click', ()=>{
+  if(modalQt>1){
+    modalQt--;
+    elemento('.pizzaInfo--qt').innerHTML = modalQt;
+  }
+});
+elemento('.pizzaInfo--qtmais').addEventListener('click', ()=>{
+  modalQt++;
+  elemento('.pizzaInfo--qt').innerHTML = modalQt;
+});
+
+elementosTotais('.pizzaInfo--size').forEach((size,sizeIndex)=>{
+  size.addEventListener('click', (e)=>{
+    elemento('.pizzaInfo--size.selected').classList.remove('selected');
+    size.classList.add('selected');  
+  });
+});
