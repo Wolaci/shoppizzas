@@ -92,11 +92,32 @@ elemento('.pizzaInfo--addButton').addEventListener('click', ()=>{
 function updateCart(){
   if(cart.length>0){
     elemento('aside').classList.add('show');
+    elemento('.cart').innerHTML = '';
     for(let i in cart){
       let pizzaItem = pizzaJson.find((item)=>{
         return item.id == cart[i].id;
       });
+      let cartItem = elemento('.models .cart--item').cloneNode(true);
+      let pizzaSizeName;
+      switch (cart[i].size) {
+        case 0:
+          pizzaSizeName = 'P';
+          break;
+        case 1:
+          pizzaSizeName = 'M';
+          break;
+        case 2:
+          pizzaSizeName = 'G';
+          break;
       
+        default:
+          break;
+      }
+      let pizzaName = `${pizzaItem.name} (${pizzaSizeName})`;
+      cartItem.querySelector('img').src = pizzaItem.img;
+      cartItem.querySelector('.cart--item-nome').innerHTML = pizzaName;
+      cartItem.querySelector('.cart--item--qt').innerHTML = cart[i].qt;
+      elemento('.cart').append(cartItem);
     }
   }else{
     elemento('aside').classList.remove('show');
