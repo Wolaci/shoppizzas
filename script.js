@@ -85,5 +85,20 @@ elemento('.pizzaInfo--addButton').addEventListener('click', ()=>{
       qt:modalQt
     });
   }
+  updateCart();
   closeModal();
 });
+
+function updateCart(){
+  if(cart.length>0){
+    elemento('aside').classList.add('show');
+    for(let i in cart){
+      let pizzaItem = pizzaJson.find((item)=>{
+        return item.id == cart[i].id;
+      });
+      
+    }
+  }else{
+    elemento('aside').classList.remove('show');
+  }
+}
