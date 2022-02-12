@@ -71,11 +71,19 @@ elementosTotais('.pizzaInfo--size').forEach((size,sizeIndex)=>{
 
 elemento('.pizzaInfo--addButton').addEventListener('click', ()=>{
   let size = parseInt(elemento('.pizzaInfo--size.selected').getAttribute('data-key'));
-  cart.push({
-    id:pizzaJson[modalKey].id,
-    size,
-    qt:modalQt
-  });
-  console.log(cart);
+  let identifier = pizzaJson[modalKey].id+'@'+size;
+  let key = cart.findIndex((item)=>{
+    return item.identifier == identifier;
+  })
+  if(key > -1){
+    cart[key].qt += modalQt;
+  }else{
+    cart.push({
+      identifier,
+      id:pizzaJson[modalKey].id,
+      size,
+      qt:modalQt
+    });
+  }
   closeModal();
 });
